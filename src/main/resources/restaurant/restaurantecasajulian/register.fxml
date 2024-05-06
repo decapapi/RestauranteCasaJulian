@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -46,12 +47,17 @@
                   <VBox spacing="5.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="214.552734375" />
-                        <PasswordField fx:id="txtPassword" promptText="Create your password" />
+                        <PasswordField fx:id="txtPassword" onKeyTyped="#testPasswordStrength" promptText="Create your password" />
+                        <Label fx:id="txtPasswStrength" prefHeight="17.0" prefWidth="235.0" />
                      </children>
                   </VBox>
                   <Separator prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="216.0" text="Register" textAlignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="216.0" text="Go back" textAlignment="CENTER" />
+                  <HBox spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="110.0" text="Register" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="110.0" text="Go back" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
