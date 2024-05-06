@@ -4,6 +4,7 @@ import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.data.TimeSlot;
 
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class Table {
         this.id = ++idCounter;
         this.seats = seats;
         this.bookable = true;
+        this.reservations = new HashMap<>();
     }
 
     public boolean addReservation(ReservationData reservation) {
@@ -33,7 +35,7 @@ public class Table {
         this.bookable = allow;
     }
 
-    public boolean isAvailable(int reservationId, TimeSlot timeSlot) {
+    public boolean isAvailable(TimeSlot timeSlot) {
         LocalTime endTime = timeSlot.startTime().plusMinutes(timeSlot.durationInMinutes());
         for (ReservationData r : reservations.keySet()) {
             if (r.timeSlot().startDate().isEqual(timeSlot.startDate())) {
