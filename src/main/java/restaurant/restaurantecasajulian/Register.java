@@ -14,6 +14,7 @@ import restaurant.restaurantecasajulian.utils.InputValidator;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
 public class Register {
+    public Label txtWelcome;
     @FXML
     private TextField txtUsername;
     @FXML
@@ -26,7 +27,7 @@ public class Register {
     private RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void register(ActionEvent actionEvent) {
+    private void register(ActionEvent actionEvent) {
         if (txtUsername.getText().isEmpty()) {
             SceneManager.showAlert("Invalid credentials", "Username cannot be empty.", Alert.AlertType.ERROR);
         } else if (!InputValidator.isValidEmail(txtEmail.getText())) {
@@ -44,11 +45,12 @@ public class Register {
     }
 
     @FXML
-    public void goBack(ActionEvent actionEvent) {
+    private void goBack(ActionEvent actionEvent) {
         SceneManager.loadScreen("login.fxml", actionEvent);
     }
 
-    public void testPasswordStrength(KeyEvent keyEvent) {
+    @FXML
+    private void testPasswordStrength(KeyEvent keyEvent) {
         int strength = InputValidator.getPasswordStrength(txtPassword.getText());
 
         switch (strength) {

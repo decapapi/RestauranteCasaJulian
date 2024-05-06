@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.restaurantecasajulian.Reservations">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="285.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <VBox alignment="TOP_CENTER" minWidth="285.0" prefHeight="308.0" prefWidth="285.0" spacing="15.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="240.0" text="Make a reservation" />
+                  <Separator prefWidth="200.0" />
+                  <VBox>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="240.0" text="Reservation type:" />
+                        <ComboBox fx:id="comboReservationType" prefHeight="25.0" prefWidth="235.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="235.0" spacing="20.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="207.0" spacing="20.0">
+                           <children>
+                              <VBox prefHeight="42.0" prefWidth="115.0">
+                                 <children>
+                                    <Label prefHeight="31.0" prefWidth="107.0" text="Seats:" />
+                                    <ComboBox fx:id="comboSeats" prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="42.0" prefWidth="115.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="120.0" text="Time:" />
+                                    <ComboBox fx:id="comboTime" prefHeight="25.0" prefWidth="120.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#makeReservation" prefHeight="30.0" prefWidth="240.0" text="Place reservation" textAlignment="CENTER" />
+                        <Separator prefWidth="200.0" />
+                        <HBox spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="110.0" text="Go back" textAlignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="110.0" text="Logout" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="25.0" right="25.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="160.0" prefHeight="160.0" prefWidth="379.0">
+         <children>
+            <VBox alignment="CENTER" minWidth="160.0" prefHeight="308.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="310.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/casajulianlogob.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

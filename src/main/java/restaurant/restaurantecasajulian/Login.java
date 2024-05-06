@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
+import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
 public class Login {
@@ -24,6 +25,9 @@ public class Login {
             } else {
                 SceneManager.showAlert("Login successful!", "You have been logged in correctly. Welcome, "
                         + rm.getCurrentUser().getUsername(), Alert.AlertType.CONFIRMATION);
+                if (rm.getCurrentUser().getUserType() == UserType.CUSTOMER) {
+                    SceneManager.loadScreen("customerMenu.fxml", actionEvent);
+                }
             }
         } else {
             SceneManager.showAlert("Invalid credentials",
