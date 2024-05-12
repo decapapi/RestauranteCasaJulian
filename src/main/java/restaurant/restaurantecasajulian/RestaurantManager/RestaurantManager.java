@@ -1,9 +1,12 @@
 package restaurant.restaurantecasajulian.RestaurantManager;
 
-import restaurant.restaurantecasajulian.data.ReservationData;
+import restaurant.restaurantecasajulian.data.*;
 import restaurant.restaurantecasajulian.data.types.UserType;
+import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.model.users.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +17,13 @@ public class RestaurantManager {
 
     private final Map<String, User> users;
     private final List<Table> tables;
+    private final Map<RatingKey, RatingData> ratings;
     private User currentUser;
 
     public RestaurantManager(){
         this.users = new HashMap<>();
         this.tables = new ArrayList<>();
+        this.ratings = new HashMap<>();
         addTestData();
     }
 
@@ -77,6 +82,28 @@ public class RestaurantManager {
         return tablesWithSeats;
     }
 
+    public List<ReservationData> getAttendedReservations(String username) {
+        List<ReservationData> reservations = new ArrayList<>();
+        for (Table table : tables) {
+            for (ReservationData reservation : table.getAttendedReservations()) {
+                if (reservation.getUserId().equals(username)) {
+                    reservations.add(reservation);
+                }
+            }
+        }
+        return reservations;
+    }
+
+    public boolean addRating(RatingData rating) {
+        if (ratings.containsKey(rating.getKey()))
+            return false;
+        return ratings.put(rating.getKey(), rating) == null;
+    }
+
+    public List<RatingData> getRatings() {
+        return new ArrayList<>(ratings.values());
+    }
+
     private void addTestData() {
         this.tables.add(new Table(2));
         this.tables.add(new Table(4));
@@ -88,5 +115,7 @@ public class RestaurantManager {
         this.users.put("employee", emp);
         emp.block(999999999);
         this.users.put("user", new Customer("user", "user", "test"));
+        List<DishData> tables = new ArrayList<>();
+        this.tables.forEach(table -> table.addReservation(new ReservationData("user", 1, new TimeSlot(LocalDate.now(), LocalTime.now(), 60), "Test data", tables)));
     }
 }

@@ -1,5 +1,7 @@
 package restaurant.restaurantecasajulian.data;
 
+import restaurant.restaurantecasajulian.utils.InputValidator;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -16,11 +18,8 @@ public record TimeSlot(LocalDate startDate, LocalTime startTime, int durationInM
      */
     @Override
     public String toString() {
-        return "TimeSlot{" +
-                "start date=" + startDate.toString() +
-                ", start time=" + startTime.toString() +
-                ", end time=" + startTime.plusMinutes(durationInMinutes).toString() +
-                '}';
+        return "Date: " + startDate.format(InputValidator.DATE_FORMATTER) +
+                ", Time: " + startTime.format(InputValidator.TIME_FORMATTER);
     }
 
     /**

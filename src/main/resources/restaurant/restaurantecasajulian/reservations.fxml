@@ -89,12 +89,12 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txtComments" prefHeight="95.0" prefWidth="263.0" promptText="Things we should take into account when processing your reservation" />
+                  <TextArea fx:id="txtComments" prefHeight="91.0" prefWidth="264.0" promptText="Things we should take into account when processing your reservation" />
                </children>
             </VBox>
             <Separator prefWidth="200.0">
                <VBox.margin>
-                  <Insets bottom="4.0" />
+                  <Insets bottom="6.0" />
                </VBox.margin>
             </Separator>
             <HBox spacing="20.0">

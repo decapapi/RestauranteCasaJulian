@@ -8,7 +8,7 @@ import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.DishData;
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.data.TimeSlot;
-import restaurant.restaurantecasajulian.model.users.Table;
+import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.utils.InputValidator;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 

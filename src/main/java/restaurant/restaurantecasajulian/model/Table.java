@@ -1,9 +1,10 @@
-package restaurant.restaurantecasajulian.model.users;
+package restaurant.restaurantecasajulian.model;
 
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.data.TimeSlot;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,16 @@ public class Table {
 
     public List<ReservationData> getReservations() {
         return reservations.keySet().stream().toList();
+    }
+
+    public List<ReservationData> getAttendedReservations() {
+        List<ReservationData> resevations = new ArrayList<>();
+        for (ReservationData reservation : reservations.keySet()) {
+            if (reservations.get(reservation)) {
+                resevations.add(reservation);
+            }
+        }
+        return resevations;
     }
 
     public int getId() {
