@@ -94,10 +94,12 @@ public class RestaurantManager {
         return reservations;
     }
 
-    public boolean addRating(RatingData rating) {
-        if (ratings.containsKey(rating.getKey()))
-            return false;
-        return ratings.put(rating.getKey(), rating) == null;
+    public RatingData getRating(String userId, TimeSlot date) {
+        return ratings.get(new RatingKey(userId, date));
+    }
+
+    public void updateRating(RatingData rating) {
+        ratings.put(new RatingKey(rating.userId(), rating.date()), rating);
     }
 
     public List<RatingData> getRatings() {
@@ -115,7 +117,8 @@ public class RestaurantManager {
         this.users.put("employee", emp);
         emp.block(999999999);
         this.users.put("user", new Customer("user", "user", "test"));
-        List<DishData> tables = new ArrayList<>();
-        this.tables.forEach(table -> table.addReservation(new ReservationData("user", 1, new TimeSlot(LocalDate.now(), LocalTime.now(), 60), "Test data", tables)));
+        List<DishData> dishes = new ArrayList<>();
+        this.tables.forEach(table -> table.addReservation(new ReservationData("user", table.getId(), new TimeSlot(LocalDate.now(), LocalTime.now(), 60), "Test data", dishes)));
+        this.tables.forEach(table -> table.confirmReservation(table.getReservations().get(0).id()));
     }
 }

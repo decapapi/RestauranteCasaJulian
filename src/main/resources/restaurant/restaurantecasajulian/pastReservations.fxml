@@ -8,12 +8,12 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.restaurantecasajulian.PastReservations">
    <center>
-      <TableView fx:id="tvReservations" prefHeight="200.0" prefWidth="475.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tvReservations" onMouseClicked="#setSelectedReservation" prefHeight="200.0" prefWidth="475.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colUser" prefWidth="75.0" text="User" />
-          <TableColumn fx:id="colTableId" prefWidth="75.0" text="Table ID" />
-            <TableColumn fx:id="colTimeslot" prefWidth="150" text="Timeslot" />
-            <TableColumn fx:id="colComments" minWidth="150" prefWidth="172.7999267578125" text="Comments" />
+          <TableColumn fx:id="colTableId" editable="false" prefWidth="50.0" text="Table" />
+            <TableColumn fx:id="colDate" editable="false" prefWidth="85.0" text="Date" />
+            <TableColumn fx:id="colTime" editable="false" prefWidth="85.0" text="Time" />
+            <TableColumn fx:id="colComments" editable="false" minWidth="128.0" prefWidth="255.0" text="Comments" />
         </columns>
       </TableView>
    </center>

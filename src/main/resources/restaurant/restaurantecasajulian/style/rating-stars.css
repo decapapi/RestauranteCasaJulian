@@ -1,0 +1,14 @@
+.star-button {
+    -fx-background-color: transparent;
+    -fx-background-image: url('./../img/unselected-star.png');
+    -fx-background-size: 20 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 5;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.selected {
+    -fx-background-image: url('./../img/selected-star.png');
+}

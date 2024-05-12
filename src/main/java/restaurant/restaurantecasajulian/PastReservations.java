@@ -16,30 +16,30 @@ public class PastReservations {
     @FXML
     private TableView<ReservationData> tvReservations;
     @FXML
-    private TableColumn<ReservationData, String> colUser;
-    @FXML
     private TableColumn<ReservationData, Integer> colTableId;
     @FXML
-    private TableColumn<ReservationData, TimeSlot> colTimeslot;
+    private TableColumn<ReservationData, String> colDate;
+    @FXML
+    private TableColumn<ReservationData, String> colTime;
     @FXML
     private TableColumn<ReservationData, String> colComments;
 
+    private static ReservationData selectedReservation;
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
     public void initialize() {
         tvReservations.getItems().addAll(rm.getAttendedReservations(rm.getCurrentUser().getUsername()));
 
-        colUser.setCellValueFactory(new PropertyValueFactory<>("userId"));
         colTableId.setCellValueFactory(new PropertyValueFactory<>("tableId"));
-        colTimeslot.setCellValueFactory(new PropertyValueFactory<>("timeSlot"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         colComments.setCellValueFactory(new PropertyValueFactory<>("comments"));
     }
 
     @FXML
     private void leaveRating(ActionEvent event) {
-        ReservationData reservation = tvReservations.getSelectionModel().getSelectedItem();
-        if (reservation != null) {
+        if (getSelectedReservation() != null) {
             SceneManager.loadModal("leaveRating.fxml", event);
         }
     }
@@ -49,4 +49,12 @@ public class PastReservations {
         SceneManager.loadScreen("customerMenu.fxml", event);
     }
 
+    public static ReservationData getSelectedReservation() {
+        return selectedReservation;
+    }
+
+    @FXML
+    private void setSelectedReservation() {
+        selectedReservation = tvReservations.getSelectionModel().getSelectedItem();
+    }
 }

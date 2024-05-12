@@ -1,5 +1,7 @@
 package restaurant.restaurantecasajulian.data;
 
+import restaurant.restaurantecasajulian.utils.InputValidator;
+
 import java.util.List;
 
 public record ReservationData(String userId, int tableId, TimeSlot timeSlot, String comments, List<DishData> preOrders, int id) {
@@ -19,6 +21,14 @@ public record ReservationData(String userId, int tableId, TimeSlot timeSlot, Str
 
     public TimeSlot getTimeSlot() {
         return timeSlot;
+    }
+
+    public String getDate() {
+        return timeSlot.startDate().format(InputValidator.DATE_FORMATTER);
+    }
+
+    public String getTime() {
+        return timeSlot.startTime().format(InputValidator.TIME_FORMATTER);
     }
 
     public String getComments() {
