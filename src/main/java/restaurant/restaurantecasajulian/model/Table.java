@@ -63,13 +63,23 @@ public class Table {
     }
 
     public List<ReservationData> getAttendedReservations() {
-        List<ReservationData> resevations = new ArrayList<>();
+        List<ReservationData> list = new ArrayList<>();
         for (ReservationData reservation : reservations.keySet()) {
             if (reservations.get(reservation)) {
-                resevations.add(reservation);
+                list.add(reservation);
             }
         }
-        return resevations;
+        return list;
+    }
+
+    public List<ReservationData> getUnattendedReservations() {
+        List<ReservationData> list = new ArrayList<>();
+        for (ReservationData reservation : reservations.keySet()) {
+            if (!reservations.get(reservation)) {
+                list.add(reservation);
+            }
+        }
+        return list;
     }
 
     public int getId() {

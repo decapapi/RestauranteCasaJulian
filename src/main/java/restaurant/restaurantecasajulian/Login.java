@@ -27,6 +27,8 @@ public class Login {
                         + rm.getCurrentUser().getUsername(), Alert.AlertType.CONFIRMATION);
                 if (rm.getCurrentUser().getUserType() == UserType.CUSTOMER) {
                     SceneManager.loadScreen("customerMenu.fxml", actionEvent);
+                } else if (rm.getCurrentUser().getUserType() == UserType.EMPLOYEE) {
+                    SceneManager.loadScreen("employeeMenu.fxml", actionEvent);
                 }
             }
         } else {

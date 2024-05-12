@@ -86,10 +86,18 @@ public class RestaurantManager {
         List<ReservationData> reservations = new ArrayList<>();
         for (Table table : tables) {
             for (ReservationData reservation : table.getAttendedReservations()) {
-                if (reservation.getUserId().equals(username)) {
+                if (reservation.username().equals(username)) {
                     reservations.add(reservation);
                 }
             }
+        }
+        return reservations;
+    }
+
+    public List<ReservationData> getUnattendedReservations() {
+        List<ReservationData> reservations = new ArrayList<>();
+        for (Table table : tables) {
+            reservations.addAll(table.getUnattendedReservations());
         }
         return reservations;
     }
@@ -125,14 +133,11 @@ public class RestaurantManager {
         this.tables.add(new Table(4));
         this.tables.add(new Table(6));
 
-        this.users.put("admin", new Administrator("admin", "admin", "test"));
+        this.users.put("employee", new Employee("employee", "employee", "test"));
         this.users.put("manager", new Manager("manager", "manager", "test"));
-        Employee emp = new Employee("employee", "employee", "test");
-        this.users.put("employee", emp);
-        emp.block(999999999);
+        this.users.put("admin", new Administrator("admin", "admin", "test"));
         this.users.put("user", new Customer("user", "user", "test"));
         List<DishData> dishes = new ArrayList<>();
         this.tables.forEach(table -> table.addReservation(new ReservationData("user", table.getId(), new TimeSlot(LocalDate.now(), LocalTime.now(), 60), "Test data", dishes)));
-        this.tables.forEach(table -> table.confirmReservation(table.getReservations().get(0).id()));
     }
 }
