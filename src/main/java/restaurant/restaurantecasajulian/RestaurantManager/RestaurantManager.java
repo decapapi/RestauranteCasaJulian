@@ -106,6 +106,20 @@ public class RestaurantManager {
         return new ArrayList<>(ratings.values());
     }
 
+    public boolean makeReservation(String username, int seats, TimeSlot reservationSlot, String comments, List<DishData> preOrders) {
+        boolean reservationMade = false;
+        List<Table> availableTables = getTablesWithSeats(seats);
+        for (int i = 0; i < availableTables.size() && !reservationMade; i++) {
+            if (availableTables.get(i).isAvailable(reservationSlot)) {
+                if (availableTables.get(i).addReservation(new ReservationData(username,
+                        availableTables.get(i).getId(), reservationSlot, comments, preOrders))) {
+                    reservationMade = true;
+                }
+            }
+        }
+        return reservationMade;
+    }
+
     private void addTestData() {
         this.tables.add(new Table(2));
         this.tables.add(new Table(4));

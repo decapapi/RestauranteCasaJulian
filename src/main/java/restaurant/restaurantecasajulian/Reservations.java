@@ -9,6 +9,7 @@ import restaurant.restaurantecasajulian.data.DishData;
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.data.TimeSlot;
 import restaurant.restaurantecasajulian.model.Table;
+import restaurant.restaurantecasajulian.model.users.Employee;
 import restaurant.restaurantecasajulian.utils.InputValidator;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reservations {
+    @FXML
+    private TextField txtUsername;
     @FXML
     private ComboBox<String> comboReservationType;
     @FXML
@@ -60,6 +63,13 @@ public class Reservations {
 
         colDishName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colRations.setCellValueFactory(new PropertyValueFactory<>("rations"));
+
+        if (rm.getCurrentUser() instanceof Employee) {
+            txtUsername.setEditable(true);
+        } else {
+            txtUsername.setText(rm.getCurrentUser().getUsername());
+            txtUsername.setEditable(false);
+        }
     }
 
     @FXML
@@ -101,17 +111,9 @@ public class Reservations {
             List<Table> availableTables = rm.getTablesWithSeats(Integer.parseInt(comboSeats.getValue()));
             LocalTime slotTime = LocalTime.parse(comboTime.getValue(), InputValidator.TIME_FORMATTER);
             TimeSlot reservationSlot = new TimeSlot(dpDate.getValue(), slotTime, 60);
-            boolean reservationMade = false;
-            for (int i = 0; i < availableTables.size() && !reservationMade; i++) {
-                if (availableTables.get(i).isAvailable(reservationSlot)) {
-                    List<DishData> preOrders = new ArrayList<>(tvPreOrder.getItems());
-                    if (availableTables.get(i).addReservation(new ReservationData(rm.getCurrentUser().getUsername(),
-                            availableTables.get(i).getId(), reservationSlot, txtComments.getText(), preOrders))) {
-                        reservationMade = true;
-                    }
-                }
-            }
-            if (!reservationMade) {
+
+            if (rm.makeReservation(txtUsername.getText(), Integer.parseInt(comboSeats.getValue()),
+                    reservationSlot, txtComments.getText(), new ArrayList<>(tvPreOrder.getItems()))) {
                 SceneManager.showAlert("Error", "A reservation could not be made with that details.", Alert.AlertType.ERROR);
             } else {
                 SceneManager.showAlert("Reservation", "Reservation made successfully!", Alert.AlertType.CONFIRMATION);
