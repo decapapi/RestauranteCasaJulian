@@ -1,4 +1,4 @@
-package restaurant.restaurantecasajulian;
+package restaurant.restaurantecasajulian.controllers.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.DishData;
-import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.data.TimeSlot;
 import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.model.users.Employee;
@@ -131,7 +130,11 @@ public class Reservations {
 
     @FXML
     private void goBack(ActionEvent actionEvent) {
-        SceneManager.loadScreen("customerMenu.fxml", actionEvent);
+        if (rm.getCurrentUser() instanceof Employee) {
+            SceneManager.loadScreen("employeeMenu.fxml", actionEvent);
+        } else {
+            SceneManager.loadScreen("customerMenu.fxml", actionEvent);
+        }
     }
 
     public void addPreOrder(ActionEvent actionEvent) {

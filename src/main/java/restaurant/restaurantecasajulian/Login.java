@@ -29,6 +29,10 @@ public class Login {
                     SceneManager.loadScreen("customerMenu.fxml", actionEvent);
                 } else if (rm.getCurrentUser().getUserType() == UserType.EMPLOYEE) {
                     SceneManager.loadScreen("employeeMenu.fxml", actionEvent);
+                } else if (rm.getCurrentUser().getUserType() == UserType.MANAGER) {
+                    SceneManager.loadScreen("managerMenu.fxml", actionEvent);
+                } else if (rm.getCurrentUser().getUserType() == UserType.ADMINISTRATOR) {
+                    SceneManager.loadScreen("manageEmployees.fxml", actionEvent);
                 }
             }
         } else {

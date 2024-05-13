@@ -1,4 +1,4 @@
-package restaurant.restaurantecasajulian;
+package restaurant.restaurantecasajulian.controllers.employee;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,15 +6,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
-import restaurant.restaurantecasajulian.data.RatingData;
 import restaurant.restaurantecasajulian.data.ReservationData;
-import restaurant.restaurantecasajulian.data.TimeSlot;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
-public class PastReservations {
+public class ConfirmAttendance {
 
     @FXML
     private TableView<ReservationData> tvReservations;
+    @FXML
+    private TableColumn<ReservationData, String> colUsername;
     @FXML
     private TableColumn<ReservationData, Integer> colTableId;
     @FXML
@@ -24,13 +24,13 @@ public class PastReservations {
     @FXML
     private TableColumn<ReservationData, String> colComments;
 
-    private static ReservationData selectedReservation;
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
     public void initialize() {
-        tvReservations.getItems().addAll(rm.getAttendedReservations(rm.getCurrentUser().getUsername()));
+        tvReservations.getItems().addAll(rm.getUnattendedReservations());
 
+        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colTableId.setCellValueFactory(new PropertyValueFactory<>("tableId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -38,23 +38,17 @@ public class PastReservations {
     }
 
     @FXML
-    private void leaveRating(ActionEvent event) {
-        if (getSelectedReservation() != null) {
-            SceneManager.loadModal("leaveRating.fxml", event);
+    private void confirmAttendance(ActionEvent event) {
+        ReservationData reservation = tvReservations.getSelectionModel().getSelectedItem();
+        if (reservation != null) {
+            rm.getTableById(reservation.getTableId()).confirmReservation(reservation.id());
+            tvReservations.getItems().remove(reservation);
+            tvReservations.refresh();
         }
     }
 
     @FXML
     private void goBack(ActionEvent event) {
-        SceneManager.loadScreen("customerMenu.fxml", event);
-    }
-
-    public static ReservationData getSelectedReservation() {
-        return selectedReservation;
-    }
-
-    @FXML
-    private void setSelectedReservation() {
-        selectedReservation = tvReservations.getSelectionModel().getSelectedItem();
+        SceneManager.loadScreen("employeeMenu.fxml", event);
     }
 }

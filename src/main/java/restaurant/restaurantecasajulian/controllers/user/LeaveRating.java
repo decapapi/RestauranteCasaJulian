@@ -1,13 +1,11 @@
-package restaurant.restaurantecasajulian;
+package restaurant.restaurantecasajulian.controllers.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.RatingData;
 import restaurant.restaurantecasajulian.data.ReservationData;
-import restaurant.restaurantecasajulian.data.TimeSlot;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
 public class LeaveRating {
@@ -86,5 +84,6 @@ public class LeaveRating {
         rm.updateRating(rating);
         SceneManager.showAlert("Rating saved", "Rating saved successfully", Alert.AlertType.INFORMATION);
         SceneManager.closeWindow(event);
+
     }
 }

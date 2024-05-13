@@ -51,12 +51,34 @@ public class RestaurantManager {
         return users.put(user.getUsername(), user) == null;
     }
 
+    public boolean addUser(User user) {
+        return users.put(user.getUsername(), user) == null;
+    }
+
+    public boolean removeUser(String username) {
+        return users.remove(username) != null;
+    }
+
     public User getCurrentUser() {
         return currentUser;
     }
 
     public UserType getCurrentUserType() {
         return currentUser.getUserType();
+    }
+
+    public User getUserByUsername(String username) {
+        return users.get(username);
+    }
+
+    public List<Employee> getEmployees() {
+        List<Employee> employees = new ArrayList<>();
+        for (User user : users.values()) {
+            if (user instanceof Employee) {
+                employees.add((Employee) user);
+            }
+        }
+        return employees;
     }
 
     public List<Table> getTables() {

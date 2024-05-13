@@ -1,4 +1,4 @@
-package restaurant.restaurantecasajulian;
+package restaurant.restaurantecasajulian.controllers.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
-public class EmployeeMenu {
+public class CustomerMenu {
     @FXML
     private Label txtWelcome;
     
@@ -22,8 +22,8 @@ public class EmployeeMenu {
         SceneManager.loadScreen("reservations.fxml", actionEvent);
     }
 
-    public void confirmAttendance(ActionEvent actionEvent) {
-        SceneManager.loadScreen("confirmAttendance.fxml", actionEvent);
+    public void viewPastReservations(ActionEvent actionEvent) {
+        SceneManager.loadScreen("pastReservations.fxml", actionEvent);
     }
 
     public void logout(ActionEvent actionEvent) {
