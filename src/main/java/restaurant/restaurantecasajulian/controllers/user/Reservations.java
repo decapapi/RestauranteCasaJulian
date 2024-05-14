@@ -107,16 +107,15 @@ public class Reservations {
         if (comboReservationType.getValue() == null || comboSeats.getValue() == null || comboTime.getValue() == null || dpDate.getValue() == null) {
             SceneManager.showAlert("Error", "Please fill in all the fields.", Alert.AlertType.ERROR);
         } else {
-            List<Table> availableTables = rm.getTablesWithSeats(Integer.parseInt(comboSeats.getValue()));
             LocalTime slotTime = LocalTime.parse(comboTime.getValue(), InputValidator.TIME_FORMATTER);
             TimeSlot reservationSlot = new TimeSlot(dpDate.getValue(), slotTime, 60);
 
             if (rm.makeReservation(txtUsername.getText(), Integer.parseInt(comboSeats.getValue()),
                     reservationSlot, txtComments.getText(), new ArrayList<>(tvPreOrder.getItems()))) {
-                SceneManager.showAlert("Error", "A reservation could not be made with that details.", Alert.AlertType.ERROR);
-            } else {
                 SceneManager.showAlert("Reservation", "Reservation made successfully!", Alert.AlertType.CONFIRMATION);
                 goBack(actionEvent);
+            } else {
+                SceneManager.showAlert("Error", "A reservation could not be made with that details.", Alert.AlertType.ERROR);
             }
         }
     }
