@@ -4,7 +4,7 @@ import static restaurant.restaurantecasajulian.utils.CSVDumper.CSV_SEPARATOR;
 
 public record RatingData(int tableId, String userId, TimeSlot date, String message, float rating) {
     public RatingKey getKey() {
-        return new RatingKey(userId, date);
+        return new RatingKey(tableId, userId, date);
     }
 
     public String toCSV() {

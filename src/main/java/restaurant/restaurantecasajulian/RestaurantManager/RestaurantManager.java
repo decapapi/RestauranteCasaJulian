@@ -164,12 +164,12 @@ public class RestaurantManager {
         this.ratings.put(rating.getKey(), rating);
     }
 
-    public RatingData getRating(String userId, TimeSlot date) {
-        return ratings.get(new RatingKey(userId, date));
+    public RatingData getRating(int tableId, String userId, TimeSlot date) {
+        return ratings.get(new RatingKey(tableId, userId, date));
     }
 
     public void updateRating(RatingData rating) {
-        ratings.put(new RatingKey(rating.userId(), rating.date()), rating);
+        ratings.put(new RatingKey(rating.tableId(), rating.userId(), rating.date()), rating);
     }
 
     public List<RatingData> getRatings() {

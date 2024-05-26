@@ -35,7 +35,7 @@ public class LeaveRating {
             txtDate.setText(reservation.getDate());
             txtTime.setText(reservation.getTime());
 
-            RatingData rating = rm.getRating(reservation.username(), reservation.getTimeSlot());
+            RatingData rating = rm.getRating(reservation.tableId(), reservation.username(), reservation.getTimeSlot());
 
             if (rating != null) {
                 ratingComment.setText(rating.message());
