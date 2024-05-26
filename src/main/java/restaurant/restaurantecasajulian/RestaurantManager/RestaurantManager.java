@@ -4,9 +4,9 @@ import restaurant.restaurantecasajulian.data.*;
 import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.model.users.*;
+import restaurant.restaurantecasajulian.utils.CSVDumper;
+import restaurant.restaurantecasajulian.utils.CSVParser;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +24,6 @@ public class RestaurantManager {
         this.users = new HashMap<>();
         this.tables = new ArrayList<>();
         this.ratings = new HashMap<>();
-        addTestData();
     }
 
     public static RestaurantManager getInstance() {
@@ -67,6 +66,10 @@ public class RestaurantManager {
         return currentUser.getUserType();
     }
 
+    public List<User> getUsers() {
+        return new ArrayList<>(users.values());
+    }
+
     public User getUserByUsername(String username) {
         return users.get(username);
     }
@@ -79,6 +82,10 @@ public class RestaurantManager {
             }
         }
         return employees;
+    }
+
+    public void addTable(Table table) {
+        this.tables.add(table);
     }
 
     public List<Table> getTables() {
@@ -104,6 +111,14 @@ public class RestaurantManager {
         return tablesWithSeats;
     }
 
+    public List<ReservationData> getReservations() {
+        List<ReservationData> reservations = new ArrayList<>();
+        for (Table table : tables) {
+            reservations.addAll(table.getReservations());
+        }
+        return reservations;
+    }
+
     public List<ReservationData> getAttendedReservations(String username) {
         List<ReservationData> reservations = new ArrayList<>();
         for (Table table : tables) {
@@ -116,12 +131,37 @@ public class RestaurantManager {
         return reservations;
     }
 
+    public void confirmReservation(int reservationId) {
+        for (Table table : tables) {
+            for (ReservationData reservation : table.getReservations()) {
+                if (reservation.id() == reservationId) {
+                    table.confirmReservation(reservationId);
+                }
+            }
+        }
+    }
+
+    public boolean isReservationConfirmed(ReservationData reservation) {
+        for (Table table : tables) {
+            for (ReservationData r : table.getAttendedReservations()) {
+                if (r.id() == reservation.id()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public List<ReservationData> getUnattendedReservations() {
         List<ReservationData> reservations = new ArrayList<>();
         for (Table table : tables) {
             reservations.addAll(table.getUnattendedReservations());
         }
         return reservations;
+    }
+
+    public void addRating(RatingData rating) {
+        this.ratings.put(rating.getKey(), rating);
     }
 
     public RatingData getRating(String userId, TimeSlot date) {
@@ -134,6 +174,13 @@ public class RestaurantManager {
 
     public List<RatingData> getRatings() {
         return new ArrayList<>(ratings.values());
+    }
+
+    public void addReservation(ReservationData reservation) {
+        Table table = getTableById(reservation.getTableId());
+        if (table != null) {
+            table.addReservation(reservation);
+        }
     }
 
     public boolean makeReservation(String username, int seats, TimeSlot reservationSlot, String comments, List<DishData> preOrders) {
@@ -150,16 +197,21 @@ public class RestaurantManager {
         return reservationMade;
     }
 
-    private void addTestData() {
-        this.tables.add(new Table(2));
-        this.tables.add(new Table(4));
-        this.tables.add(new Table(6));
+    public static void loadData() {
+        CSVParser.loadUsers();
+        System.out.println(getInstance().users);
+        CSVParser.loadTables();
+        System.out.println(getInstance().tables);
+        CSVParser.loadReservations();
+        System.out.println(getInstance().getReservations());
+        CSVParser.loadRatings();
+        System.out.println(getInstance().getRatings());
+    }
 
-        this.users.put("employee", new Employee("employee", "employee", "test"));
-        this.users.put("manager", new Manager("manager", "manager", "test"));
-        this.users.put("admin", new Administrator("admin", "admin", "test"));
-        this.users.put("user", new Customer("user", "user", "test"));
-        List<DishData> dishes = new ArrayList<>();
-        this.tables.forEach(table -> table.addReservation(new ReservationData("user", table.getId(), new TimeSlot(LocalDate.now(), LocalTime.now(), 60), "Test data", dishes)));
+    public static void saveData() {
+        CSVDumper.dumpReservations();
+        CSVDumper.dumpRatings();
+        CSVDumper.dumpUsers();
+        CSVDumper.dumpTables();
     }
 }

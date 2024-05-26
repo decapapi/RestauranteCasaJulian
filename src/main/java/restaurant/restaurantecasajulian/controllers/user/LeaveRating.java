@@ -80,7 +80,7 @@ public class LeaveRating {
 
     @FXML
     private void saveRating(ActionEvent event) {
-        RatingData rating = new RatingData(rm.getCurrentUser().getUsername(), PastReservations.getSelectedReservation().getTimeSlot(), ratingComment.getText(), getRating());
+        RatingData rating = new RatingData(PastReservations.getSelectedReservation().tableId(), rm.getCurrentUser().getUsername(), PastReservations.getSelectedReservation().getTimeSlot(), ratingComment.getText(), getRating());
         rm.updateRating(rating);
         SceneManager.showAlert("Rating saved", "Rating saved successfully", Alert.AlertType.INFORMATION);
         SceneManager.closeWindow(event);

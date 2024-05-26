@@ -4,6 +4,8 @@ import restaurant.restaurantecasajulian.utils.InputValidator;
 
 import java.util.List;
 
+import static restaurant.restaurantecasajulian.utils.CSVDumper.CSV_SEPARATOR;
+
 public record ReservationData(String username, int tableId, TimeSlot timeSlot, String comments, List<DishData> preOrders, int id) {
     private static int idCounter = 0;
 
@@ -37,5 +39,17 @@ public record ReservationData(String username, int tableId, TimeSlot timeSlot, S
 
     public List<DishData> getPreOrders() {
         return preOrders;
+    }
+
+    public String toCSV() {
+        StringBuilder preOrdersString = new StringBuilder();
+        for (DishData dish : preOrders) {
+            preOrdersString.append(dish.getName()).append(":").append(dish.getRations()).append(CSV_SEPARATOR);
+        }
+        if (!preOrdersString.isEmpty()) {
+            preOrdersString.setLength(preOrdersString.length() - 1);
+        }
+
+        return id + CSV_SEPARATOR + username + CSV_SEPARATOR + tableId + CSV_SEPARATOR + timeSlot.toCSV() + CSV_SEPARATOR + comments + CSV_SEPARATOR + preOrdersString;
     }
 }

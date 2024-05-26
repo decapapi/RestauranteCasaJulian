@@ -1,6 +1,5 @@
 package restaurant.restaurantecasajulian.utils;
 
-import javafx.css.Size;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import restaurant.restaurantecasajulian.RestauranteCasaJulian;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 public class SceneManager {
 

@@ -7,14 +7,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import static restaurant.restaurantecasajulian.utils.CSVDumper.CSV_SEPARATOR;
+
 public abstract  class User {
     private final String username;
     private final String password;
     private final String email;
     private final UserType userType;
     private TimeSlot blockedTime = null;
-
-    private static final String CSV_SEPARATOR = ";";
 
     public User(String username, String password, String email, UserType userType) {
         this.username = username;
@@ -87,7 +87,7 @@ public abstract  class User {
                 '}';
     }
 
-    public void toCSV() {
-        System.out.println(username + CSV_SEPARATOR + password + CSV_SEPARATOR + email);
+    public String toCSV() {
+        return userType.name() + CSV_SEPARATOR + username + CSV_SEPARATOR + password + CSV_SEPARATOR + email;
     }
 }

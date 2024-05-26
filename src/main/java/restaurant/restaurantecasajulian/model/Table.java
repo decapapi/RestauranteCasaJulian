@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static restaurant.restaurantecasajulian.utils.CSVDumper.CSV_SEPARATOR;
+
 public class Table {
     private static int idCounter = 0;
 
@@ -21,6 +23,13 @@ public class Table {
         this.id = ++idCounter;
         this.seats = seats;
         this.bookable = true;
+        this.reservations = new HashMap<>();
+    }
+
+    public Table(int id, int seats, boolean bookable) {
+        this.id = id;
+        this.seats = seats;
+        this.bookable = bookable;
         this.reservations = new HashMap<>();
     }
 
@@ -92,5 +101,9 @@ public class Table {
 
     public boolean isBookable() {
         return bookable;
+    }
+
+    public String toCSV() {
+        return id + CSV_SEPARATOR + seats + CSV_SEPARATOR + bookable;
     }
 }

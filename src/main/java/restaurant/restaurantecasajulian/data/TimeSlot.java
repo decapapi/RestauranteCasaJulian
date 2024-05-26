@@ -22,6 +22,12 @@ public record TimeSlot(LocalDate startDate, LocalTime startTime, int durationInM
                 ", Time: " + startTime.format(InputValidator.TIME_FORMATTER);
     }
 
+    public String toCSV() {
+        return startDate.format(InputValidator.DATE_FORMATTER) + "-" +
+                startTime.format(InputValidator.TIME_FORMATTER) + "-" +
+                durationInMinutes;
+    }
+
     /**
      * Get the timeslot start date
      * @return the timeslot start date
@@ -31,5 +37,16 @@ public record TimeSlot(LocalDate startDate, LocalTime startTime, int durationInM
         if (output == 0)
             output = this.startTime.compareTo(timeSlot.startTime);
         return output;
+    }
+
+    public static TimeSlot parse(String line) {
+        String[] fields = line.split("-");
+        String date = fields[0];
+        String time = fields[1];
+        String duration = fields[2];
+        LocalDate startDate = LocalDate.parse(date, InputValidator.DATE_FORMATTER);
+        LocalTime startTime = LocalTime.parse(time, InputValidator.TIME_FORMATTER);
+        int durationInMinutes = Integer.parseInt(duration);
+        return new TimeSlot(startDate, startTime, durationInMinutes);
     }
 }
