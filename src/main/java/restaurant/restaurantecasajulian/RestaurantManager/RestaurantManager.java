@@ -216,6 +216,12 @@ public class RestaurantManager {
         return reservationMade;
     }
 
+    public void cancelReservation(int reservationId) {
+        for (Table table : tables) {
+            table.removeReservation(reservationId);
+        }
+    }
+
     public static void loadData() {
         CSVParser.loadUsers();
         CSVParser.loadTables();

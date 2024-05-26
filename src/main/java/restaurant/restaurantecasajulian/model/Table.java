@@ -53,8 +53,14 @@ public class Table {
         return reservations.put(reservation, false) == null;
     }
 
-    public boolean removeReservation(ReservationData reservation) {
-        return reservations.remove(reservation) != null;
+    public boolean removeReservation(int reservationId) {
+        for (ReservationData reservation : reservations.keySet()) {
+            if (reservation.id() == reservationId) {
+                reservations.remove(reservation);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void allowReservations(boolean allow) {

@@ -32,6 +32,7 @@ public class ManagerMenu {
 
     @FXML
     private void showManageReservations(ActionEvent event) {
+        SceneManager.loadScreen("manageReservations.fxml", event);
     }
 
     @FXML
