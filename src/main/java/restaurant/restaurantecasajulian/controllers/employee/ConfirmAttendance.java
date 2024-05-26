@@ -27,7 +27,7 @@ public class ConfirmAttendance {
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         tvReservations.getItems().addAll(rm.getUnattendedReservations());
 
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));

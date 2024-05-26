@@ -1,4 +1,4 @@
-package restaurant.restaurantecasajulian;
+package restaurant.restaurantecasajulian.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

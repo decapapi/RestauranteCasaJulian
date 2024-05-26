@@ -18,21 +18,20 @@ public class CustomerMenu {
         txtWelcome.setText("Welcome, " + rm.getCurrentUser().getUsername());
     }
 
-    public void showReservationsMenu(ActionEvent actionEvent) {
+    @FXML
+    private void showReservationsMenu(ActionEvent actionEvent) {
         SceneManager.loadScreen("reservations.fxml", actionEvent);
     }
 
-    public void viewPastReservations(ActionEvent actionEvent) {
+    @FXML
+    private void viewPastReservations(ActionEvent actionEvent) {
         SceneManager.loadScreen("pastReservations.fxml", actionEvent);
     }
 
-    public void logout(ActionEvent actionEvent) {
+    @FXML
+    private void logout(ActionEvent actionEvent) {
         rm.logout();
         SceneManager.showAlert("Logout", "You have been logged out successfully.", Alert.AlertType.INFORMATION);
         SceneManager.loadScreen("login.fxml", actionEvent);
-    }
-
-    public void goBack(ActionEvent actionEvent) {
-        SceneManager.loadScreen("customerMenu.fxml", actionEvent);
     }
 }

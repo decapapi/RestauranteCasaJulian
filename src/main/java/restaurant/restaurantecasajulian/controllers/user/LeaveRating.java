@@ -29,7 +29,7 @@ public class LeaveRating {
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         if (PastReservations.getSelectedReservation() != null) {
             ReservationData reservation = PastReservations.getSelectedReservation();
             txtDate.setText(reservation.getDate());
@@ -71,7 +71,6 @@ public class LeaveRating {
             }
         }
     }
-
 
     private int getRating() {
         Button[] stars = {star1, star2, star3, star4, star5};

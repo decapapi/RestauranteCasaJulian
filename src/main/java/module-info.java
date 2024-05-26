@@ -15,6 +15,10 @@ module restaurant.restaurantecasajulian {
     opens restaurant.restaurantecasajulian.controllers.user to javafx.fxml;
     exports restaurant.restaurantecasajulian.controllers.employee;
     opens restaurant.restaurantecasajulian.controllers.employee to javafx.fxml;
+    exports restaurant.restaurantecasajulian.controllers.manager;
+    opens restaurant.restaurantecasajulian.controllers.manager to javafx.fxml;
     exports restaurant.restaurantecasajulian.controllers.admin;
     opens restaurant.restaurantecasajulian.controllers.admin to javafx.fxml;
+    exports restaurant.restaurantecasajulian.controllers;
+    opens restaurant.restaurantecasajulian.controllers to javafx.fxml;
 }

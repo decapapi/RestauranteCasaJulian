@@ -27,7 +27,7 @@ public class PastReservations {
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         tvReservations.getItems().addAll(rm.getAttendedReservations(rm.getCurrentUser().getUsername()));
 
         colTableId.setCellValueFactory(new PropertyValueFactory<>("tableId"));

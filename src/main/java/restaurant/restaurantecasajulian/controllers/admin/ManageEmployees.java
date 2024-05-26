@@ -39,7 +39,7 @@ public class ManageEmployees {
     private final RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         tvEmployees.getItems().addAll(rm.getEmployees());
 
         comboType.getItems().addAll("Employee", "Manager");

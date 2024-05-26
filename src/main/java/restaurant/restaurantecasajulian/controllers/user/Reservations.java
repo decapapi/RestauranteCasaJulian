@@ -121,13 +121,6 @@ public class Reservations {
     }
 
     @FXML
-    private void logout(ActionEvent actionEvent) {
-        rm.logout();
-        SceneManager.showAlert("Logout", "You have been logged out successfully.", Alert.AlertType.INFORMATION);
-        goBack(actionEvent);
-    }
-
-    @FXML
     private void goBack(ActionEvent actionEvent) {
         if (rm.getCurrentUser() instanceof Employee) {
             SceneManager.loadScreen("employeeMenu.fxml", actionEvent);

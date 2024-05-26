@@ -18,15 +18,18 @@ public class EmployeeMenu {
         txtWelcome.setText("Welcome, " + rm.getCurrentUser().getUsername());
     }
 
-    public void showReservationsMenu(ActionEvent actionEvent) {
+    @FXML
+    private void showReservationsMenu(ActionEvent actionEvent) {
         SceneManager.loadScreen("reservations.fxml", actionEvent);
     }
 
-    public void confirmAttendance(ActionEvent actionEvent) {
+    @FXML
+    private void confirmAttendance(ActionEvent actionEvent) {
         SceneManager.loadScreen("confirmAttendance.fxml", actionEvent);
     }
 
-    public void logout(ActionEvent actionEvent) {
+    @FXML
+    private void logout(ActionEvent actionEvent) {
         rm.logout();
         SceneManager.showAlert("Logout", "You have been logged out successfully.", Alert.AlertType.INFORMATION);
         SceneManager.loadScreen("login.fxml", actionEvent);

@@ -1,5 +1,6 @@
 package restaurant.restaurantecasajulian.RestaurantManager;
 
+import restaurant.restaurantecasajulian.controllers.user.Reservations;
 import restaurant.restaurantecasajulian.data.*;
 import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.model.Table;
@@ -86,6 +87,24 @@ public class RestaurantManager {
 
     public void addTable(Table table) {
         this.tables.add(table);
+    }
+
+    public void removeTable(int id) {
+        Table table = getTableById(id);
+        if (table != null) {
+            tables.remove(table);
+        }
+    }
+
+    public boolean editTable(int id, int seats, boolean bookable) {
+        Table table = getTableById(id);
+        if (table != null) {
+            Map<ReservationData, Boolean> reservations = table.getReservationsMap();
+            tables.remove(table);
+            tables.add(new Table(id, seats, bookable, reservations));
+        }
+
+        return table != null;
     }
 
     public List<Table> getTables() {
@@ -199,13 +218,9 @@ public class RestaurantManager {
 
     public static void loadData() {
         CSVParser.loadUsers();
-        System.out.println(getInstance().users);
         CSVParser.loadTables();
-        System.out.println(getInstance().tables);
         CSVParser.loadReservations();
-        System.out.println(getInstance().getReservations());
         CSVParser.loadRatings();
-        System.out.println(getInstance().getRatings());
     }
 
     public static void saveData() {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.restaurantecasajulian.controllers.manager.AddEditTable">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="160.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="-1.0" minWidth="160.0" prefHeight="308.0" prefWidth="172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="310.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/casajulianlogob.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="285.0" prefHeight="160.0" prefWidth="379.0">
+         <children>
+            <VBox layoutX="7.0" layoutY="36.0" minWidth="285.0" prefHeight="308.0" prefWidth="285.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <HBox />
+                              <HBox>
+                                 <children>
+                                    <Label fx:id="txtAction" prefHeight="17.0" prefWidth="252.0" text="Add a new table" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin></Separator>
+                  <VBox prefHeight="42.0" prefWidth="40.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="115.0" text="Table id:" />
+                        <TextField fx:id="txtTableId" disable="true" prefHeight="25.0" prefWidth="40.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="42.0" prefWidth="241.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="115.0" text="Seats number:" />
+                        <ComboBox fx:id="comboSeats" prefHeight="25.0" prefWidth="155.0" />
+                     </children>
+                  </VBox>
+                  <VBox />
+                  <VBox prefHeight="42.0" prefWidth="165.0" spacing="5.0">
+                     <children>
+                        <Label text="Bookable:" />
+                        <ComboBox fx:id="comboBookable" prefHeight="25.0" prefWidth="155.0" />
+                     </children>
+                  </VBox>
+                  <VBox />
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Separator>
+                  <HBox spacing="15.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="110.0" text="Go back" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#confirm" prefHeight="30.0" prefWidth="110.0" text="Confirm" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </padding>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

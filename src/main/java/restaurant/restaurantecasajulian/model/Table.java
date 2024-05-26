@@ -26,11 +26,27 @@ public class Table {
         this.reservations = new HashMap<>();
     }
 
-    public Table(int id, int seats, boolean bookable) {
-        this.id = id;
+    public Table(int seats, boolean bookable) {
+        this.id = ++idCounter;
         this.seats = seats;
         this.bookable = bookable;
         this.reservations = new HashMap<>();
+    }
+
+    public Table(int tableId, int seats, boolean bookable) {
+        this.id = tableId;
+        idCounter = Math.max(idCounter, tableId);
+        this.seats = seats;
+        this.bookable = bookable;
+        this.reservations = new HashMap<>();
+    }
+
+    public Table(int tableId, int seats, boolean bookable, Map<ReservationData, Boolean> reservations) {
+        this.id = tableId;
+        idCounter = Math.max(idCounter, tableId);
+        this.seats = seats;
+        this.bookable = bookable;
+        this.reservations = reservations;
     }
 
     public boolean addReservation(ReservationData reservation) {
@@ -69,6 +85,10 @@ public class Table {
 
     public List<ReservationData> getReservations() {
         return reservations.keySet().stream().toList();
+    }
+
+    public Map<ReservationData, Boolean> getReservationsMap() {
+        return reservations;
     }
 
     public List<ReservationData> getAttendedReservations() {
