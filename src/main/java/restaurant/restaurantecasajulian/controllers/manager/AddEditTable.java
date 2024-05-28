@@ -14,7 +14,7 @@ public class AddEditTable {
     @FXML
     private ComboBox<Integer> comboSeats;
     @FXML
-    private ComboBox<Boolean> comboBookable;
+    private CheckBox checkBookable;
     @FXML
     private Label txtAction;
 
@@ -24,7 +24,6 @@ public class AddEditTable {
     @FXML
     private void initialize() {
         comboSeats.getItems().addAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        comboBookable.getItems().addAll(true, false);
 
         Table selectedTable = ManageTables.getSelectedTable();
 
@@ -33,7 +32,7 @@ public class AddEditTable {
             txtAction.setText("Edit table");
             txtTableId.setText(String.valueOf(selectedTable.getId()));
             comboSeats.setValue(selectedTable.getSeats());
-            comboBookable.setValue(selectedTable.isBookable());
+            checkBookable.setSelected(selectedTable.isBookable());
 
         } else {
             txtAction.setText("Add table");
@@ -43,14 +42,14 @@ public class AddEditTable {
     @FXML
     private void confirm(ActionEvent event) {
         if (isEdit) {
-            if (rm.editTable(Integer.parseInt(txtTableId.getText()), comboSeats.getValue(), comboBookable.getValue())) {
+            if (rm.editTable(Integer.parseInt(txtTableId.getText()), comboSeats.getValue(), checkBookable.isSelected())) {
                 SceneManager.showAlert("Success", "Table edited successfully.", Alert.AlertType.CONFIRMATION);
                 SceneManager.loadScreen("manageTables.fxml", event);
             } else {
                 SceneManager.showAlert("Error", "Could not edit table.", Alert.AlertType.ERROR);
             }
         } else {
-            rm.addTable(new Table(comboSeats.getValue(), comboBookable.getValue()));
+            rm.addTable(new Table(comboSeats.getValue(), checkBookable.isSelected()));
             SceneManager.showAlert("Success", "Table added successfully.", Alert.AlertType.CONFIRMATION);
             SceneManager.loadScreen("manageTables.fxml", event);
         }

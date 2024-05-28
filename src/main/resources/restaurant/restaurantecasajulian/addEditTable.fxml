@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -29,7 +30,7 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="285.0" prefHeight="160.0" prefWidth="379.0">
          <children>
-            <VBox layoutX="7.0" layoutY="36.0" minWidth="285.0" prefHeight="308.0" prefWidth="285.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox layoutX="7.0" layoutY="36.0" minWidth="285.0" prefHeight="308.0" prefWidth="285.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox spacing="5.0">
                      <children>
@@ -62,13 +63,11 @@
                      </children>
                   </VBox>
                   <VBox />
-                  <VBox prefHeight="42.0" prefWidth="165.0" spacing="5.0">
+                  <VBox prefHeight="22.0" prefWidth="235.0" spacing="5.0">
                      <children>
-                        <Label text="Bookable:" />
-                        <ComboBox fx:id="comboBookable" prefHeight="25.0" prefWidth="155.0" />
+                        <CheckBox fx:id="checkBookable" mnemonicParsing="false" text="Bookable" />
                      </children>
                   </VBox>
-                  <VBox />
                   <Separator prefWidth="200.0">
                      <VBox.margin>
                         <Insets top="15.0" />
