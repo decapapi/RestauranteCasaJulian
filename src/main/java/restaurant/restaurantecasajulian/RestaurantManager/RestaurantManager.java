@@ -1,6 +1,5 @@
 package restaurant.restaurantecasajulian.RestaurantManager;
 
-import restaurant.restaurantecasajulian.controllers.user.Reservations;
 import restaurant.restaurantecasajulian.data.*;
 import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.model.Table;
@@ -20,6 +19,7 @@ public class RestaurantManager {
     private final List<Table> tables;
     private final Map<RatingKey, RatingData> ratings;
     private User currentUser;
+    private boolean open;
 
     public RestaurantManager(){
         this.users = new HashMap<>();
@@ -222,17 +222,11 @@ public class RestaurantManager {
         }
     }
 
-    public static void loadData() {
-        CSVParser.loadUsers();
-        CSVParser.loadTables();
-        CSVParser.loadReservations();
-        CSVParser.loadRatings();
+    public boolean isOpen() {
+        return open;
     }
 
-    public static void saveData() {
-        CSVDumper.dumpReservations();
-        CSVDumper.dumpRatings();
-        CSVDumper.dumpUsers();
-        CSVDumper.dumpTables();
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 }

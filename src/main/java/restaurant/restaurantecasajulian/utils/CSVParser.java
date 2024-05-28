@@ -14,6 +14,20 @@ import java.util.List;
 
 public class CSVParser {
 
+    public static void loadData() {
+        loadOpen();
+        loadUsers();
+        loadTables();
+        loadReservations();
+        loadRatings();
+    }
+
+    public static void loadOpen()
+    {
+        List<String> lines = FileManager.readAllLines(CSVDumper.configFile);
+        RestaurantManager.getInstance().setOpen(!lines.isEmpty() && lines.get(0).equals("true"));
+    }
+
     public static void loadUsers() {
         List<String> usersData = FileManager.readAllLines(CSVDumper.usersFile);
 

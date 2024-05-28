@@ -3,6 +3,7 @@ package restaurant.restaurantecasajulian.controllers.manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.utils.SceneManager;
@@ -10,12 +11,15 @@ import restaurant.restaurantecasajulian.utils.SceneManager;
 public class ManagerMenu {
     @FXML
     private Label txtWelcome;
+    @FXML
+    private CheckBox chkOpen;
     
     private RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
     private void initialize() {
         txtWelcome.setText("Welcome, " + rm.getCurrentUser().getUsername());
+        chkOpen.setSelected(rm.isOpen());
     }
 
     @FXML
@@ -36,6 +40,7 @@ public class ManagerMenu {
     }
 
     @FXML
-    private void showPremisesControl(ActionEvent event) {
+    private void toggleOpen() {
+        RestaurantManager.getInstance().setOpen(chkOpen.isSelected());
     }
 }

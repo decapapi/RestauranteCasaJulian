@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
+import restaurant.restaurantecasajulian.utils.CSVDumper;
+import restaurant.restaurantecasajulian.utils.CSVParser;
 
 import java.io.IOException;
 
@@ -16,9 +18,9 @@ public class RestauranteCasaJulian extends Application {
         stage.setTitle("Restaurante Casa Julian");
         stage.setScene(scene);
         stage.resizableProperty().setValue(Boolean.FALSE);
-        RestaurantManager.loadData();
+        CSVParser.loadData();
         stage.show();
-        stage.setOnHiding(e -> RestaurantManager.saveData());
+        stage.setOnHiding(e -> CSVDumper.dumpData());
     }
 
     public static void main(String[] args) {

@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CSVDumper {
     public static final String dataPath = "RestaurantData/";
+    public static final String configFile = dataPath + "config.csv";
     public static final String reservationsFile = dataPath + "reservations.csv";
     public static final String ratingsFile = dataPath + "ratings.csv";
     public static final String usersFile = dataPath + "users.csv";
@@ -20,6 +21,18 @@ public class CSVDumper {
     public static final String CSV_SEPARATOR = ";";
 
     private static RestaurantManager rm = RestaurantManager.getInstance();
+
+    public static void dumpData() {
+        dumpConfig();
+        dumpReservations();
+        dumpRatings();
+        dumpUsers();
+        dumpTables();
+    }
+
+    public static void dumpConfig() {
+        FileManager.write(configFile, String.valueOf(rm.isOpen()));
+    }
 
     public static void dumpReservations() {
         List<String> data = new ArrayList<>();

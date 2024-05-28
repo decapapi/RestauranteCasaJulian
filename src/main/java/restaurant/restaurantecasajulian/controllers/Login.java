@@ -23,16 +23,26 @@ public class Login {
                 SceneManager.showAlert("Account blocked",
                         "Your account is currently blocked. You cannot log in.", Alert.AlertType.ERROR);
             } else {
-                SceneManager.showAlert("Login successful!", "You have been logged in correctly. Welcome, "
-                        + rm.getCurrentUser().getUsername(), Alert.AlertType.CONFIRMATION);
-                if (rm.getCurrentUser().getUserType() == UserType.CUSTOMER) {
-                    SceneManager.loadScreen("customerMenu.fxml", actionEvent);
-                } else if (rm.getCurrentUser().getUserType() == UserType.EMPLOYEE) {
-                    SceneManager.loadScreen("employeeMenu.fxml", actionEvent);
-                } else if (rm.getCurrentUser().getUserType() == UserType.MANAGER) {
-                    SceneManager.loadScreen("managerMenu.fxml", actionEvent);
-                } else if (rm.getCurrentUser().getUserType() == UserType.ADMINISTRATOR) {
-                    SceneManager.loadScreen("manageEmployees.fxml", actionEvent);
+                if (!rm.isOpen() && rm.getCurrentUser().getUserType() != UserType.MANAGER && rm.getCurrentUser().getUserType() != UserType.ADMINISTRATOR) {
+                    SceneManager.showAlert("Restaurant closed",
+                            "The restaurant is currently closed. You cannot log in.", Alert.AlertType.ERROR);
+                } else {
+                    SceneManager.showAlert("Login successful!", "You have been logged in correctly. Welcome, "
+                            + rm.getCurrentUser().getUsername(), Alert.AlertType.CONFIRMATION);
+                    if (rm.getCurrentUser().getUserType() == UserType.CUSTOMER) {
+                        SceneManager.loadScreen("customerMenu.fxml", actionEvent);
+                    } else if (rm.getCurrentUser().getUserType() == UserType.EMPLOYEE) {
+                        if (!rm.isOpen()) {
+                            SceneManager.showAlert("Restaurant closed",
+                                    "The restaurant is currently closed. You cannot log in.", Alert.AlertType.ERROR);
+                        } else {
+                            SceneManager.loadScreen("employeeMenu.fxml", actionEvent);
+                        }
+                    } else if (rm.getCurrentUser().getUserType() == UserType.MANAGER) {
+                        SceneManager.loadScreen("managerMenu.fxml", actionEvent);
+                    } else if (rm.getCurrentUser().getUserType() == UserType.ADMINISTRATOR) {
+                        SceneManager.loadScreen("manageEmployees.fxml", actionEvent);
+                    }
                 }
             }
         } else {
