@@ -17,6 +17,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for the reservations screen.
+ * Allows users to make a reservation for a meal or lunch.
+ * Users can also add a pre-order to their reservation.
+ */
+
 public class Reservations {
     @FXML
     private TextField txtUsername;
@@ -129,7 +135,8 @@ public class Reservations {
         }
     }
 
-    public void addPreOrder(ActionEvent actionEvent) {
+    @FXML
+    private void addPreOrder(ActionEvent actionEvent) {
         if (comboDishName.getValue() == null || comboRations.getValue() == null) {
             SceneManager.showAlert("Error", "Please select a dish and the number of rations.", Alert.AlertType.ERROR);
         } else {
@@ -138,7 +145,8 @@ public class Reservations {
         }
     }
 
-    public void removePreOrder(ActionEvent actionEvent) {
+    @FXML
+    private void removePreOrder(ActionEvent actionEvent) {
         DishData selectedDish = tvPreOrder.getSelectionModel().getSelectedItem();
         if (selectedDish == null) {
             SceneManager.showAlert("Error", "Please select a dish to remove.", Alert.AlertType.ERROR);

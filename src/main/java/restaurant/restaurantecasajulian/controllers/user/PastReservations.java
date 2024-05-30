@@ -10,6 +10,12 @@ import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the Past Reservations screen.
+ * This screen shows the user's past reservations.
+ * Shows the list of past reservations and allows the user to leave a rating for a reservation.
+ */
+
 public class PastReservations {
 
     @FXML
@@ -48,6 +54,12 @@ public class PastReservations {
     private void goBack(ActionEvent event) {
         SceneManager.loadScreen("customerMenu.fxml", event);
     }
+
+    /**
+     * Get the selected reservation.
+     * Allows the Leave Rating modal to get the selected reservation.
+     * @return the selected reservation
+     */
 
     public static ReservationData getSelectedReservation() {
         return selectedReservation;

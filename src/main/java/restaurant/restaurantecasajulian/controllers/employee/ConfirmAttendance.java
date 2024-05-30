@@ -9,6 +9,11 @@ import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the ConfirmAttendance screen.
+ * Allows employees to confirm the attendance of a reservation.
+ */
+
 public class ConfirmAttendance {
 
     @FXML

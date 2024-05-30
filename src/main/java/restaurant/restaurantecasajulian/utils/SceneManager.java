@@ -11,12 +11,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import restaurant.restaurantecasajulian.RestauranteCasaJulian;
 
+/**
+ * Class to manage the scene of the application
+ * It has methods to load screens, modals and show alerts
+ */
 public class SceneManager {
 
+    /**
+     * Load a screen in the same stage
+     * @param viewPath path of the view to load
+     * @param event event that triggered the action
+     */
     public static void loadScreen(String viewPath, Event event){
         loadScreen(viewPath, (Stage) ((Node) event.getSource()).getScene().getWindow());
     }
 
+    /**
+     * Load a screen in a new stage
+     * @param viewPath path of the view to load
+     */
     public static void loadScreen(String viewPath, Stage stage) {
         try {
             Parent root = FXMLLoader.load(RestauranteCasaJulian.class.getResource(viewPath));
@@ -36,6 +49,12 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Load a modal in a new stage
+     * @param viewPath path of the view to load
+     * @param actionEvent event that triggered the action
+     * @return the stage of the modal
+     */
     public static Stage loadModal(String viewPath, ActionEvent actionEvent) {
         try {
             Parent view = FXMLLoader.load(RestauranteCasaJulian.class.getResource(viewPath));
@@ -60,11 +79,21 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Close the window
+     * @param event event that triggered the action
+     */
     public static void closeWindow(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Show an alert
+     * @param title title of the alert
+     * @param message message of the alert
+     * @param type type of the alert
+     */
     public static void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

@@ -14,6 +14,11 @@ import restaurant.restaurantecasajulian.model.users.User;
 import restaurant.restaurantecasajulian.utils.InputValidator;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the manage employees screen
+ * Allows to manage employees, add, remove, suspend, unsuspend
+ */
+
 public class ManageEmployees {
 
     @FXML
@@ -127,6 +132,11 @@ public class ManageEmployees {
         }
     }
 
+    /**
+     * Get the selected employee
+     * Allows to get the selected employee from the table view
+     * @return the selected employee
+     */
     public static Employee getSelectedEmployee() {
         return selectedEmployee;
     }

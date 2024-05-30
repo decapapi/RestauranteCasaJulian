@@ -8,6 +8,11 @@ import javafx.scene.control.Label;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * ManagerMenu screen controller
+ * Allows the manager to navigate through the different manager options
+ */
+
 public class ManagerMenu {
     @FXML
     private Label txtWelcome;

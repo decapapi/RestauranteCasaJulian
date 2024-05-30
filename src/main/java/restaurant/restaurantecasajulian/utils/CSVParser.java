@@ -12,8 +12,17 @@ import restaurant.restaurantecasajulian.model.users.User;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CSVParser class.
+ * This class is responsible for parsing the CSV files and loading the data into the system.
+ */
+
 public class CSVParser {
 
+    /**
+     * loadData method.
+     * This method loads the data from the CSV files into the system.
+     */
     public static void loadData() {
         loadOpen();
         loadUsers();
@@ -22,12 +31,20 @@ public class CSVParser {
         loadRatings();
     }
 
+    /**
+     * loadOpen method.
+     * This method loads the open status of the restaurant from the config file.
+     */
     public static void loadOpen()
     {
         List<String> lines = FileManager.readAllLines(CSVDumper.configFile);
         RestaurantManager.getInstance().setOpen(!lines.isEmpty() && lines.get(0).equals("true"));
     }
 
+    /**
+     * loadUsers method.
+     * This method loads the users from the users CSV file.
+     */
     public static void loadUsers() {
         List<String> usersData = FileManager.readAllLines(CSVDumper.usersFile);
 
@@ -52,6 +69,10 @@ public class CSVParser {
         }
     }
 
+    /**
+     * loadTables method.
+     * This method loads the tables from the tables CSV file.
+     */
     public static void loadTables() {
         List<String> tablesData = FileManager.readAllLines(CSVDumper.tablesFile);
         for (String tableData : tablesData) {
@@ -68,6 +89,10 @@ public class CSVParser {
         }
     }
 
+    /**
+     * loadReservations method.
+     * This method loads the reservations from the reservations CSV file.
+     */
     public static void loadReservations() {
         List<String> reservationsData = FileManager.readAllLines(CSVDumper.reservationsFile);
         for (String reservationData : reservationsData) {
@@ -94,6 +119,12 @@ public class CSVParser {
         }
     }
 
+    /**
+     * parsePreOrders method.
+     * This method parses the pre-orders data from the CSV file.
+     * @param preOrdersData The pre-orders data.
+     * @return The list of pre-orders.
+     */
     private static List<DishData> parsePreOrders(String preOrdersData) {
         List<DishData> preOrders = new ArrayList<>();
         String[] preOrdersFields = preOrdersData.split(CSVDumper.CSV_SEPARATOR);
@@ -107,6 +138,10 @@ public class CSVParser {
         return preOrders;
     }
 
+    /**
+     * loadRatings method.
+     * This method loads the ratings from the ratings CSV file.
+     */
     public static void loadRatings() {
         List<String> ratingsData = FileManager.readAllLines(CSVDumper.ratingsFile);
         for (String ratingData : ratingsData) {

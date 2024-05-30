@@ -8,6 +8,12 @@ import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the add/edit table screen.
+ * Allows the user to add or edit a table.
+ * @see restaurant.restaurantecasajulian.controllers.manager.ManageTables
+ */
+
 public class AddEditTable {
     @FXML
     private TextField txtTableId;

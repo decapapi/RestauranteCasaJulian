@@ -13,6 +13,11 @@ import restaurant.restaurantecasajulian.model.users.Customer;
 import restaurant.restaurantecasajulian.utils.InputValidator;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Register controller class
+ * Handles the registration of a new user
+ */
+
 public class Register {
     public Label txtWelcome;
     @FXML

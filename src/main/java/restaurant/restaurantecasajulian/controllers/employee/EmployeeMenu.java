@@ -7,6 +7,11 @@ import javafx.scene.control.Label;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Basic menu for employees.
+ * Allows employees to access the reservations menu and the confirm attendance menu.
+ */
+
 public class EmployeeMenu {
     @FXML
     private Label txtWelcome;

@@ -11,6 +11,13 @@ import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.model.users.User;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the SuspendEmployee view
+ * This view is used to suspend an employee
+ * @see restaurant.restaurantecasajulian.model.users.Employee
+ * @see restaurant.restaurantecasajulian.model.users.User
+ */
+
 public class SuspendEmployee {
     @FXML
     private TextField txtUsername;

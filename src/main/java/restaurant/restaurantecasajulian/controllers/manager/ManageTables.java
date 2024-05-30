@@ -14,6 +14,11 @@ import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the manageTables.fxml file.
+ * This class is used to manage the tables of the restaurant.
+ */
+
 public class ManageTables {
 
     @FXML
@@ -69,6 +74,12 @@ public class ManageTables {
     private void goBack(ActionEvent event) {
         SceneManager.loadScreen("managerMenu.fxml", event);
     }
+
+    /**
+     * This method is used to get the selected table.
+     * Allows other classes to get the selected table.
+     * @return the selected table.
+     */
 
     public static Table getSelectedTable() {
         return selectedTable;

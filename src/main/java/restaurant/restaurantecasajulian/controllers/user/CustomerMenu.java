@@ -7,6 +7,11 @@ import javafx.scene.control.Label;
 import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * CustomerMenu screen controller
+ * Allows the user to navigate through the customer menu
+ */
+
 public class CustomerMenu {
     @FXML
     private Label txtWelcome;
@@ -14,7 +19,7 @@ public class CustomerMenu {
     private RestaurantManager rm = RestaurantManager.getInstance();
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         txtWelcome.setText("Welcome, " + rm.getCurrentUser().getUsername());
     }
 

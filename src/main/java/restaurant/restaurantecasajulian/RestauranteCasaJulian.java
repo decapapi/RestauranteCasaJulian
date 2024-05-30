@@ -11,6 +11,9 @@ import restaurant.restaurantecasajulian.utils.CSVParser;
 import java.io.IOException;
 
 public class RestauranteCasaJulian extends Application {
+    /**
+     * Starts the application
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RestauranteCasaJulian.class.getResource("login.fxml"));
@@ -23,6 +26,9 @@ public class RestauranteCasaJulian extends Application {
         stage.setOnHiding(e -> CSVDumper.dumpData());
     }
 
+    /**
+     * Main method
+     */
     public static void main(String[] args) {
         launch();
     }

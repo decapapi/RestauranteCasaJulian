@@ -8,6 +8,11 @@ import restaurant.restaurantecasajulian.data.RatingData;
 import restaurant.restaurantecasajulian.data.ReservationData;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the LeaveRating.fxml file.
+ * This class is used to handle the user's rating of a reservation.
+ */
+
 public class LeaveRating {
     @FXML
     private Label txtDate;

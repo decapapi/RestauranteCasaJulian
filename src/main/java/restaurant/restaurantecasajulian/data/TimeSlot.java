@@ -22,6 +22,10 @@ public record TimeSlot(LocalDate startDate, LocalTime startTime, int durationInM
                 ", Time: " + startTime.format(InputValidator.TIME_FORMATTER);
     }
 
+    /**
+     * String representation of the TimeSlot in CSV format
+     * @return the string representation of the TimeSlot in CSV format
+     */
     public String toCSV() {
         return startDate.format(InputValidator.DATE_FORMATTER) + "-" +
                 startTime.format(InputValidator.TIME_FORMATTER) + "-" +
@@ -39,6 +43,11 @@ public record TimeSlot(LocalDate startDate, LocalTime startTime, int durationInM
         return output;
     }
 
+    /**
+     * Parse a string to a TimeSlot object
+     * @param line the string to parse
+     * @return the TimeSlot object
+     */
     public static TimeSlot parse(String line) {
         String[] fields = line.split("-");
         String date = fields[0];

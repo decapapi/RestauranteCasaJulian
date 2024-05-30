@@ -9,6 +9,10 @@ import restaurant.restaurantecasajulian.RestaurantManager.RestaurantManager;
 import restaurant.restaurantecasajulian.data.types.UserType;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller for the login screen.
+ */
+
 public class Login {
     @FXML
     private TextField txtUsername;
@@ -17,7 +21,8 @@ public class Login {
 
     private RestaurantManager rm = RestaurantManager.getInstance();
 
-    public void login(ActionEvent actionEvent) {
+    @FXML
+    private void login(ActionEvent actionEvent) {
         if (rm.login(txtUsername.getText(), txtPassword.getText())) {
             if (rm.getCurrentUser().isBlocked()) {
                 SceneManager.showAlert("Account blocked",
@@ -51,7 +56,8 @@ public class Login {
         }
     }
 
-    public void register(ActionEvent actionEvent) {
+    @FXML
+    private void register(ActionEvent actionEvent) {
         SceneManager.loadScreen("register.fxml", actionEvent);
     }
 }

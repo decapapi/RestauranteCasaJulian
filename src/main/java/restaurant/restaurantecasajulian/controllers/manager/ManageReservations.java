@@ -15,6 +15,11 @@ import restaurant.restaurantecasajulian.data.TimeSlot;
 import restaurant.restaurantecasajulian.model.Table;
 import restaurant.restaurantecasajulian.utils.SceneManager;
 
+/**
+ * Controller class for the manageReservations.fxml file.
+ * This class is responsible for managing the reservations of the restaurant.
+ */
+
 public class ManageReservations {
 
     @FXML
@@ -80,6 +85,11 @@ public class ManageReservations {
         selectedReservation = tvReservations.getSelectionModel().getSelectedItem();
         tvPreorder.setItems(FXCollections.observableArrayList(selectedReservation.getPreOrders()));
     }
+
+    /**
+     * Get the selected reservation
+     * @return the selected reservation
+     */
 
     public static ReservationData getSelectedReservation() {
         return selectedReservation;
